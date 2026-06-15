@@ -103,7 +103,12 @@ python walk_forward_simple.py --ticker IWM --windows 119
 
 Example output:
 ```text
-Window 1: Simple Profit = $2.38 | BSM Profit = $0.68
+Window 118: GBM Profit = $0.04
+        CH  Profit = $1.08
+        BSM Profit = $-1.36
+Window 119: GBM Profit = $0.08
+        CH  Profit = $0.11
+        BSM Profit = $-1.67
 ...
 Mean Net Profit ($): Simple Agent = 0.42, BSM Delta = -1.24
 Win Rate (%): Simple Agent = 74.0%, BSM Delta = 54.0%
@@ -112,7 +117,7 @@ Sharpe Ratio: Simple Agent = 2.59, BSM Delta = -3.76
 
 ---
 
-## ⚙️ Configuration (`config_simple.py`)
+## ⚙️ Configuration (`config_ch.py`)
 
 Key parameters you may want to adjust:
 
@@ -140,32 +145,54 @@ These control the realism of the simulated market:
 
 ---
 
-## 📈 Results Interpretation
+## 📈 Results 
 
-**In training:**
-- Costs start around $12 (random policy) and drop to $5‑7 (good policy).
-- Even a perfect hedge cannot have zero cost because transaction costs and financing are unavoidable.
-- If costs do not decrease, try increasing exploration noise or critic updates.
 
 **In walk‑forward validation:**
-- Positive net profit means the agent outperforms the premium received.
-- Win rate > 50% means the agent makes money more often than it loses.
-- Compare Sharpe ratio – higher is better.
-- The simple agent should outperform BSM delta hedge when transaction costs are significant (here `kappa=0.02`).
+- ================================================================================
+COMPREHENSIVE METRICS COMPARISON
+================================================================================
+
+================================================================================
+PROFITABILITY METRICS
+================================================================================
+Metric                     GBM Agent       CH Agent      BSM Delta
+-----------------------------------------------------------------
+Mean Net Profit ($)             0.33           0.45          -0.50
+Std Net Profit ($)              2.16           2.21           4.80
+Win Rate (%)                   61.34          61.34          52.10
+Total Profit ($)               39.70          54.07         -60.02
+
+================================================================================
+RISK-ADJUSTED METRICS
+================================================================================
+Metric                     GBM Agent       CH Agent      BSM Delta
+-----------------------------------------------------------------
+Sharpe Ratio                   2.449          3.262         -1.670
+Sortino Ratio                  3.145          4.482         -2.134
+Calmar Ratio                 125.253        152.803        -19.823
+Max Drawdown ($)              -17.02         -22.55         -89.62
+Max Drawdown (%)             -31.69%         -35.39%        -302.78% 
+VaR 95% ($)                    -4.08          -3.60          -9.95
+CVaR 95% ($)                   -5.23          -4.88         -12.31
+
+================================================================================
+SUMMARY: BEST PERFORMER BY METRIC
+================================================================================
+Mean Net Profit ($) : CH Agent ($0.45)
+Std Net Profit ($)  : BSM Delta ($4.80)
+Win Rate (%)        : GBM Agent ($61.34)
+Total Profit ($)    : CH Agent ($54.07)
+Sharpe Ratio        : CH Agent (3.262)
+Sortino Ratio       : CH Agent (4.482)
+Calmar Ratio        : CH Agent (152.803)
+Max Drawdown ($)    : BSM Delta ($-89.62)
+Max Drawdown (%)    : BSM Delta (-302.78%)
+VaR 95% ($)         : BSM Delta ($-9.95)
+CVaR 95% ($)        : BSM Delta ($-12.31)
 
 ---
 
-## 🛠️ Troubleshooting
-
-| Problem | Likely cause | Solution |
-| :--- | :--- | :--- |
-| `FileNotFoundError` when saving checkpoints | Directory missing | Run `mkdir -p checkpoints/simple` |
-| `ValueError: All input arrays must have same shape` | State builder bug | Use the corrected `build_simple_state` from the final environment file |
-| Yahoo Finance download fails | Network or rate limiting | Wait a few minutes, use VPN, or download CSV manually |
-| Training cost does not decrease | Wrong reward sign or learning rate | Verify `c = -r` in `train_simple.py`; try `lr_actor = 5e-4` |
-| BSM hedge has `nan` | Missing `is_short_call` attribute | Add `is_short_call = True` to `ConfigSimple` |
-
----
 
 ## 📚 References
 
