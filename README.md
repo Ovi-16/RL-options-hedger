@@ -37,11 +37,10 @@ option_hedge/
    ```bash
    conda create -n hedge-rl python=3.9
    conda activate hedge-rl
-Install dependencies:
+3. **Install dependencies:**
+   pip install -r requirements.txt
 
-bash
-pip install jax jaxlib flax optax numpy pandas matplotlib scipy yfinance
-Note: JAX may require a separate installation for GPU support – see JAX documentation.
+
 
 🧠 Training the Simple Agent
 The agent learns to hedge a short ATM call with 21 daily rebalancing steps, transaction costs (kappa = 0.02), and net financing cost.
