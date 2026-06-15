@@ -38,14 +38,14 @@ option_hedge/
 
 2. **Create a conda environment** (recommended):
 ```bash
-   conda create -n hedge-rl python=3.9
-   conda activate hedge-rl
-   ```
+conda create -n hedge-rl python=3.9
+conda activate hedge-rl
+```
 
 3. **Install dependencies:**
 ```bash
-   pip install -r requirements.txt
-   ```
+pip install -r requirements.txt
+```
 
 ---
 
@@ -151,17 +151,22 @@ These control the realism of the simulated market:
 | VaR 95% ($) | -4.08 | **-3.60** | -9.95 |
 | CVaR 95% ($) | -5.23 | **-4.88** | -12.31 |
 
+### Example hedging on windows
+![Hedge Window 1](hedge_window_1.png)
+![Hedge Window 2](hedge_window_2.png)
+![Hedge Window 3](hedge_window_3.png)
+
 ### Summary: Best Performer by Metric
-*   **Mean Net Profit ($):** CH Agent ($0.45)
-*   **Std Net Profit ($):** GBM Agent ($2.16) — *Lower is better*
-*   **Win Rate (%):** GBM/CH Agent (61.34%)
-*   **Total Profit ($):** CH Agent ($54.07)
-*   **Sharpe Ratio:** CH Agent (3.262)
-*   **Sortino Ratio:** CH Agent (4.482)
-*   **Calmar Ratio:** CH Agent (152.803)
-*   **Max Drawdown ($):** GBM Agent (-$17.02) — *Least negative is better*
-*   **VaR 95% ($):** CH Agent (-$3.60) — *Lowest risk is better*
-*   **CVaR 95% ($):** CH Agent (-$4.88) — *Lowest risk is better*
+* **Mean Net Profit ($):** CH Agent ($0.45)
+* **Std Net Profit ($):** GBM Agent ($2.16) — *Lower is better*
+* **Win Rate (%):** GBM/CH Agent (61.34%)
+* **Total Profit ($):** CH Agent ($54.07)
+* **Sharpe Ratio:** CH Agent (3.262)
+* **Sortino Ratio:** CH Agent (4.482)
+* **Calmar Ratio:** CH Agent (152.803)
+* **Max Drawdown ($):** GBM Agent (-$17.02) — *Least negative is better*
+* **VaR 95% ($):** CH Agent (-$3.60) — *Lowest risk is better*
+* **CVaR 95% ($):** CH Agent (-$4.88) — *Lowest risk is better*
 
 ---
 
@@ -172,4 +177,3 @@ These control the realism of the simulated market:
 3. Fujimoto, S., van Hoof, H., & Meger, D. (2018). *Addressing Function Approximation Error in Actor‑Critic Methods (TD3)*. ICML.
 
 ---
-
