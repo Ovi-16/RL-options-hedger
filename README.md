@@ -86,33 +86,18 @@ Run:
 python walk_forward_simple.py --ticker IWM
 ```
 
-To test all windows (119 for IWM), use:
-```bash
-python walk_forward_simple.py --ticker IWM --windows 119
-```
-
-**Optional arguments:**
-- `--checkpoint path.pkl` – load a different checkpoint (e.g., `best_actor.pkl`)
-- `--no_plots` – skip generating hedge window plots
-
-**Output includes:**
-- **Profitability metrics:** mean net profit, win rate, total profit.
-- **Risk metrics:** Sharpe, Sortino, Calmar, max drawdown, VaR, CVaR.
-- **Plots:** hedge positions, cumulative P&L, profit bar chart (first 3 windows).
-- **Hedge distribution histogram.**
-
 Example output:
 ```text
 Window 118: GBM Profit = $0.04
-        CH  Profit = $1.08
-        BSM Profit = $-1.36
+            CH  Profit = $1.08
+            BSM Profit = $-1.36
 Window 119: GBM Profit = $0.08
-        CH  Profit = $0.11
-        BSM Profit = $-1.67
+            CH  Profit = $0.11
+            BSM Profit = $-1.67
 ...
-Mean Net Profit ($): Simple Agent = 0.42, BSM Delta = -1.24
-Win Rate (%): Simple Agent = 74.0%, BSM Delta = 54.0%
-Sharpe Ratio: Simple Agent = 2.59, BSM Delta = -3.76
+Mean Net Profit ($): CH Agent = 0.45, BSM Delta = -0.50
+Win Rate (%): CH Agent = 61.34%, BSM Delta = 52.10%
+Sharpe Ratio: CH Agent = 3.262, BSM Delta = -1.670
 ```
 
 ---
@@ -145,54 +130,40 @@ These control the realism of the simulated market:
 
 ---
 
-## 📈 Results 
+## 📈 Results (Walk-Forward Validation at .1% transaction cost)
 
+### Profitability Metrics
+| Metric | GBM Agent | CH Agent | BSM Delta |
+| :--- | :--- | :--- | :--- |
+| Mean Net Profit ($) | 0.33 | **0.45** | -0.50 |
+| Std Net Profit ($) | **2.16** | 2.21 | 4.80 |
+| Win Rate (%) | **61.34%** | **61.34%** | 52.10% |
+| Total Profit ($) | 39.70 | **54.07** | -60.02 |
 
-**In walk‑forward validation:**
-- ================================================================================
-COMPREHENSIVE METRICS COMPARISON
-================================================================================
+### Risk-Adjusted Metrics
+| Metric | GBM Agent | CH Agent | BSM Delta |
+| :--- | :--- | :--- | :--- |
+| Sharpe Ratio | 2.449 | **3.262** | -1.670 |
+| Sortino Ratio | 3.145 | **4.482** | -2.134 |
+| Calmar Ratio | 125.253 | **152.803** | -19.823 |
+| Max Drawdown ($) | **-17.02** | -22.55 | -89.62 |
+| Max Drawdown (%) | **-31.69%** | -35.39% | -302.78% |
+| VaR 95% ($) | -4.08 | **-3.60** | -9.95 |
+| CVaR 95% ($) | -5.23 | **-4.88** | -12.31 |
 
-================================================================================
-PROFITABILITY METRICS
-================================================================================
-Metric                     GBM Agent       CH Agent      BSM Delta
------------------------------------------------------------------
-Mean Net Profit ($)             0.33           0.45          -0.50
-Std Net Profit ($)              2.16           2.21           4.80
-Win Rate (%)                   61.34          61.34          52.10
-Total Profit ($)               39.70          54.07         -60.02
-
-================================================================================
-RISK-ADJUSTED METRICS
-================================================================================
-Metric                     GBM Agent       CH Agent      BSM Delta
------------------------------------------------------------------
-Sharpe Ratio                   2.449          3.262         -1.670
-Sortino Ratio                  3.145          4.482         -2.134
-Calmar Ratio                 125.253        152.803        -19.823
-Max Drawdown ($)              -17.02         -22.55         -89.62
-Max Drawdown (%)             -31.69%         -35.39%        -302.78% 
-VaR 95% ($)                    -4.08          -3.60          -9.95
-CVaR 95% ($)                   -5.23          -4.88         -12.31
-
-================================================================================
-SUMMARY: BEST PERFORMER BY METRIC
-================================================================================
-Mean Net Profit ($) : CH Agent ($0.45)
-Std Net Profit ($)  : BSM Delta ($4.80)
-Win Rate (%)        : GBM Agent ($61.34)
-Total Profit ($)    : CH Agent ($54.07)
-Sharpe Ratio        : CH Agent (3.262)
-Sortino Ratio       : CH Agent (4.482)
-Calmar Ratio        : CH Agent (152.803)
-Max Drawdown ($)    : BSM Delta ($-89.62)
-Max Drawdown (%)    : BSM Delta (-302.78%)
-VaR 95% ($)         : BSM Delta ($-9.95)
-CVaR 95% ($)        : BSM Delta ($-12.31)
+### Summary: Best Performer by Metric
+*   **Mean Net Profit ($):** CH Agent ($0.45)
+*   **Std Net Profit ($):** GBM Agent ($2.16) — *Lower is better*
+*   **Win Rate (%):** GBM/CH Agent (61.34%)
+*   **Total Profit ($):** CH Agent ($54.07)
+*   **Sharpe Ratio:** CH Agent (3.262)
+*   **Sortino Ratio:** CH Agent (4.482)
+*   **Calmar Ratio:** CH Agent (152.803)
+*   **Max Drawdown ($):** GBM Agent (-$17.02) — *Least negative is better*
+*   **VaR 95% ($):** CH Agent (-$3.60) — *Lowest risk is better*
+*   **CVaR 95% ($):** CH Agent (-$4.88) — *Lowest risk is better*
 
 ---
-
 
 ## 📚 References
 
