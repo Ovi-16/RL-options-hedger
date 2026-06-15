@@ -9,26 +9,6 @@ This project implements deep reinforcement learning agents for hedging European 
 - **Init delta layer** – warm‑start idea adapted from the [deep‑hedging engine](https://github.com/alexander-dybdahl/deep-hedging/tree/main) by Alexander Dybdahl
 - **Replay buffer & batch learning** – stores past transitions (state, action, reward, next state); each epoch adds 64 parallel trajectories (1,344 transitions) to a buffer of size 500,000, then samples mini‑batches of size 128 for stable, off‑policy updates
 
----
-
-## 📁 Project Structure
-
-```text
-option_hedge/
-├── train_simple.py
-├── walk_forward_simple.py
-├── config_simple.py
-├── agent_simple.py
-├── chiarella_heston_simple_env.py
-├── replay_buffer.py
-├── checkpoints/
-│   └── simple/
-│       ├── final_actor.pkl
-│       └── best_actor.pkl
-├── hedge_window_simple_*.png
-├── requirements.txt
-└── README.md
-```
 
 ---
 
