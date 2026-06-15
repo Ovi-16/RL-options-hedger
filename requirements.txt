@@ -1,0 +1,22 @@
+# Core ML
+jax==0.4.30
+jaxlib==0.4.30
+flax==0.8.5
+optax==0.2.2
+chex==0.1.90
+ml-dtypes==0.5.4
+
+# Numerical & Data
+numpy==2.0.2
+pandas==2.3.3
+scipy==1.13.1
+matplotlib==3.9.4
+
+# Finance & Data download
+yfinance==1.2.0
+
+# Utilities (often used indirectly)
+requests==2.32.5
+packaging==26.2
+python-dateutil==2.9.0.post0
+pytz==2026.2
