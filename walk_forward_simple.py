@@ -264,7 +264,7 @@ def compute_all_metrics(results, agent_names):
 # Main
 # ================================================================
 
-def run_walk_forward_all(ticker='IWM', simple_ckpt='checkpoints/simple_0.25/final_actor.pkl',
+def run_walk_forward_all(ticker='SPY', simple_ckpt='checkpoints/simple_0.25/final_actor.pkl',
                          gbm_ckpt='checkpoints/gbm_td3/epoch_250_actor.pkl', max_windows=None):
     print("="*80)
     print("WALK-FORWARD VALIDATION - ALL AGENTS")
@@ -364,7 +364,7 @@ def run_walk_forward_all(ticker='IWM', simple_ckpt='checkpoints/simple_0.25/fina
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--ticker', type=str, default='IWM')
+    parser.add_argument('--ticker', type=str, default='SPY')
     parser.add_argument('--simple_ckpt', type=str, default='checkpoints/simple_0.25/final_actor.pkl')
     parser.add_argument('--gbm_ckpt', type=str, default='checkpoints/gbm_td3/epoch_250_actor.pkl')
     parser.add_argument('--windows', type=int, default=None)

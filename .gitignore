@@ -6,3 +6,13 @@ __pycache__/
 .vscode/
 .ipynb_checkpoints/
 env/
+agent_ch.py
+chiarella_heston_env.py
+diagnoistic.py
+config_ch.py
+temp_config.py
+temp_train.py
+train_ch.py
+validate_jax.py
+walk_forward_validate.py
+chiarella_heston.py

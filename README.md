@@ -4,27 +4,27 @@ This project implements deep reinforcement learning agents for hedging European 
 
 - **Chiarella‑Heston market simulator** (agent‑based model with momentum, fundamental, and volatility traders)
 - **Simple 3‑state agent** (log price, normalized holdings, normalized time‑to‑maturity) – aligns with the paper *Deeper Hedging* (Gao et al., ICAIF 2023)
-- **TD3 training** with double Q‑critics and risk‑sensitive objective (mean cost + λ·std)
+- **TD3 training** with double Q‑critics (mean + squared cost) and 2:1 critic‑to‑actor update ratio, enabling a risk‑sensitive objective (mean cost + λ·std)
 - **Walk‑forward validation** on real ETF data (IWM, SPY) – scales each 21‑day window to start at $100
-
+- **Init delta layer** – warm‑start idea adapted from the [deep‑hedging engine](https://github.com/alexander-dybdahl/deep-hedging/tree/main) by Alexander Dybdahl
+- **Replay buffer & batch learning** – stores past transitions (state, action, reward, next state); each epoch adds 64 parallel trajectories (1,344 transitions) to a buffer of size 500,000, then samples mini‑batches of size 128 for stable, off‑policy updates
 ---
 
+````markdown
 ## 📁 Project Structure
 option_hedge/
-├── train_simple.py # Train the simple 3‑state agent
-├── walk_forward_simple.py # Validate on real data
-├── config_simple.py # All hyperparameters
-├── agent_simple.py # Actor & Double Critic networks
-├── chiarella_heston_simple_env.py # CH environment (simple state)
-├── replay_buffer.py # Experience replay buffer
-├── checkpoints/ # Saved model weights
+├── train_simple.py
+├── walk_forward_simple.py
+├── config_simple.py
+├── agent_simple.py
+├── chiarella_heston_simple_env.py
+├── replay_buffer.py
+├── checkpoints/
 │ └── simple/
 │ ├── final_actor.pkl
 │ └── best_actor.pkl
-├── hedge_window_simple_*.png # Example plots
+├── hedge_window_simple_*.png
 └── README.md
-
-text
 
 ---
 
