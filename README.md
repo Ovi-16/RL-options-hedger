@@ -24,6 +24,7 @@ option_hedge/
 │ ├── final_actor.pkl
 │ └── best_actor.pkl
 ├── hedge_window_simple_*.png
+├── requirements.txt
 └── README.md
 
 ---
