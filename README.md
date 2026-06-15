@@ -173,14 +173,3 @@ These control the realism of the simulated market:
 
 ---
 
-## 📄 License
-
-This project is provided for research and educational purposes. No warranty is implied.
-
----
-
-## 🤝 Contributing
-
-Feel free to open issues or submit pull requests for improvements.
-
-**Happy hedging!** 📈
