@@ -110,7 +110,7 @@ These control the realism of the simulated market:
 
 ---
 
-## 📈 Results (Walk-Forward Validation at .1% transaction cost)
+## 📈 Results (Walk-Forward Validation at .1% transaction cost and profits based on closed form blacksholes premium)
 
 ### Profitability Metrics
 | Metric | GBM Agent | CH Agent | BSM Delta |
